@@ -3,55 +3,40 @@ const Traveller = function(journeys) {
 };
 
 Traveller.prototype.getJourneyStartLocations = function() {
-  const start_locations = this.journeys.map(journey => {
-    return journey.startLocation
-  })
-  return start_locations
+  return this.journeys.map(journey => {
+    return journey.startLocation})
 };
 
 Traveller.prototype.getJourneyEndLocations = function () {
-  const end_locations = this.journeys.map(journey => {
-    return journey.endLocation
-  })
-  return end_locations
+  return this.journeys.map(journey => {
+    return journey.endLocation})
 };
 
 Traveller.prototype.getJourneyTransportTypes = function() {
-  const transport_types = this.journeys.map(journey => {
-    return journey.transport
-  })
-  return transport_types
+  return this.journeys.map(journey => {
+    return journey.transport})
 };
 
 Traveller.prototype.getJourneysByTransport = function (transport) {
-  const results = this.journeys.filter(journey => journey.transport === transport);
-  
-  return results
+  return this.journeys.filter(journey => journey.transport === transport);
 };
 
 Traveller.prototype.getJourneysByMinDistance = function (minDistance) {
-  const results = this.journeys.filter(journey => journey.distance >= minDistance);
-  
-  return results
+  return this.journeys.filter(journey => journey.distance >= minDistance);
 };
 
 Traveller.prototype.calculateTotalDistanceTravelled = function () {
-  const sumDistance = this.journeys.reduce((totalDistance, journey)=>{
-    return totalDistance + journey.distance;
-  }, 0)
-
-  return sumDistance
+  return this.journeys.reduce((totalDistance, journey)=>{
+    return totalDistance + journey.distance}, 0)
 };
 
 Traveller.prototype.getUniqueModesOfTransport = function () {
   const unique = (value, index, self) => {
-    return self.indexOf(value) === index
-  }
+    return self.indexOf(value) === index}
   
   const transport_types = this.getJourneyTransportTypes();
-  const unique_transport_types = transport_types.filter(unique);
-  return unique_transport_types;
-}
+  return transport_types.filter(unique);
+};
 
 
 module.exports = Traveller;
